@@ -17,7 +17,7 @@ variable "rsa_bits" {
 }
 
 variable "organization" {
-  type = string
+  type    = string
   default = null
 }
 

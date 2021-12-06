@@ -9,7 +9,7 @@ resource "tls_cert_request" "certificate" {
   private_key_pem = tls_private_key.certificate.private_key_pem
 
   subject {
-    common_name = var.common_name
+    common_name  = var.common_name
     organization = var.organization
   }
 
