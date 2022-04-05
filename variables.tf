@@ -16,15 +16,34 @@ variable "rsa_bits" {
   default     = 4096
 }
 
-variable "organization" {
-  description = "Define the certificate organization."
+variable "common_name" {
+  description = "[DEPRECATED] Define the certificate common name. Use 'subject' instead"
   type        = string
-  default     = null
+  default     = ""
 }
 
-variable "common_name" {
-  description = "Define the certificate common name."
+variable "organization" {
+  description = "[DEPRECATED] Define the certificate organization. Use 'subject' instead"
   type        = string
+  default     = ""
+}
+
+variable "subject" {
+  description = "Subject properties"
+  type = object({
+    common_name         = string
+    organizational_unit = optional(string)
+    organization        = optional(string)
+    street_address      = optional(list(string))
+    postal_code         = optional(string)
+    locality            = optional(string)
+    province            = optional(string)
+    country             = optional(string)
+  })
+
+  default = {
+    common_name = ""
+  }
 }
 
 variable "dns_sans" {
