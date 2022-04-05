@@ -31,7 +31,7 @@ resource "tls_locally_signed_cert" "certificate" {
 
   is_ca_certificate = false
 
-  validity_period_hours = var.validity_period_hours / 60
+  validity_period_hours = var.validity_period_hours
 
   allowed_uses = concat([
     "key_encipherment",
