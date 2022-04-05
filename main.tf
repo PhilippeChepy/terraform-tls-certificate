@@ -9,8 +9,14 @@ resource "tls_cert_request" "certificate" {
   private_key_pem = tls_private_key.certificate.private_key_pem
 
   subject {
-    common_name  = var.common_name
-    organization = var.organization
+    common_name         = var.subject.common_name != "" ? var.subject.common_name : var.common_name
+    organizational_unit = try(var.subject.organizational_unit)
+    organization        = var.subject.organization != "" ? var.subject.organization : var.organization
+    street_address      = try(var.subject.street_address)
+    postal_code         = try(var.subject.postal_code)
+    locality            = try(var.subject.locality)
+    province            = try(var.subject.province)
+    country             = try(var.subject.country)
   }
 
   dns_names    = var.dns_sans
